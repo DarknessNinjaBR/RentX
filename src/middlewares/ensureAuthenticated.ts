@@ -4,7 +4,7 @@ import { AppError } from "../errors/AppError";
 import { UsersRepository } from "../modules/accounts/repositories/implementations/UsersRepository";
 
 interface IPayload {
-    userId: string;
+    user_id: string;
 }
 
 export async function ensureAuthenticated(request: Request, response: Response, next: NextFunction) {
@@ -17,14 +17,18 @@ export async function ensureAuthenticated(request: Request, response: Response, 
     const [, token] = authHeader.split(" ");
 
     try{
-        const { userId } = verify(token, "3cf1238d33b8c69d305e1a22429a6f34") as IPayload;
+        const { user_id } = verify(token, "3cf1238d33b8c69d305e1a22429a6f34") as IPayload;
 
         const usersRepository = new UsersRepository();
 
-        const user = await usersRepository.findById(userId)
+        const user = await usersRepository.findById(user_id)
 
         if(!user)
             throw new AppError("User does not exists", 401);
+
+        request.user = {
+            id: user_id
+        };
 
         next();
     } catch {
