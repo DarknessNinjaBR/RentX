@@ -6,9 +6,8 @@ interface IOptions {
 
 getConnectionOptions().then(options => {
   const newOptions = options as IOptions;
-  newOptions.host = 'localhost';
-  createConnection({
+  newOptions.host = 'database_rentx';
+  createConnection({ 
     ...options,
   });
-  
 });
