@@ -1,6 +1,30 @@
 # 🚗 RentX API
 
 ## ⚙️ Installing
+
+### 🐋 With Docker
+Clone the project
+```
+https://github.com/DarknessNinjaBR/RentX.git
+```
+inside the project folder, run
+```
+docker-compose build
+```
+after that
+```
+docker-compose up
+```
+and
+```
+yarn typeorm migration:run
+```
+Enjoy!
+
+&nbsp;
+
+
+### 🚫 Without Docker
 Clone the project
 ```
 https://github.com/DarknessNinjaBR/RentX.git
@@ -22,3 +46,4 @@ start the application
 yarn dev
 ```
 Enjoy!
+
